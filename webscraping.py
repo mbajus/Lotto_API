@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+import os
 import sqlite3
 import bs4 as bs
 
