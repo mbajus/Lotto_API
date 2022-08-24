@@ -1,7 +1,4 @@
-from unittest import expectedFailure
-from urllib import request
-from flask import Flask, jsonify, request
-import sqlite3
+from flask import Flask
 
 app = Flask(__name__)
 
