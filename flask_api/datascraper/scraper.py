@@ -31,10 +31,10 @@ for code in page.find_all("div", class_="game-main-box skip-contrast"):
         for i in row.find_all("div", class_="scoreline-item"):
             nums.append(i.get_text().strip())
         nums = ",".join(nums)
-        if name = "Lotto":
+        if name == "Lotto":
             record.nums = nums
             record.id = id
-        elif name = "Lotto Plus":
+        elif name == "Lotto Plus":
             record.numsp = nums
         # elif name = "Super Szansa":
         #     record.ssid = id
