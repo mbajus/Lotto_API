@@ -6,3 +6,4 @@ class Lotto(db.Model):
     numsp = db.Column(db.Text)
     date = db.Column(db.Integer)
     time = db.Column(db.Integer)
+    # ssid = db.Column(db.Integer) # SuperSzansa id, for future assignment
