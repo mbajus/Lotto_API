@@ -1,17 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+# from selenium import webdriver
+# from selenium.webdriver.chrome.service import Service
 import bs4 as bs
 from flask_api.extensions import db
 from flask_api.models import Lotto
+import webdriver
 
-ser = Service("./chromedriver.exe")
-op = webdriver.ChromeOptions()
-op.add_experimental_option('excludeSwitches', ['enable-logging'])
-driver = webdriver.Chrome(service=ser, options=op)
-driver.get("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
-page = driver.page_source
-driver.close()
-
+# ser = Service("./chromedriver.exe")
+# op = webdriver.ChromeOptions()
+# op.add_experimental_option('excludeSwitches', ['enable-logging'])
+# driver = webdriver.Chrome(service=ser, options=op)
+# driver.get("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
+# page = driver.page_source
+# driver.close()
+page = webdriver.gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
 page = bs.BeautifulSoup(page, "html.parser")
 
 
