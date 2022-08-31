@@ -33,7 +33,7 @@ def initialdb():
             #     record.ssid = id
         db.session.add(record)
         db.session.commit()
-    return page
+    return page.get_text()
 
 
 
