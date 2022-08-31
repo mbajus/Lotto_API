@@ -22,4 +22,4 @@ def getpage():
 @click.command(name='dbrecords')
 @with_appcontext
 def dbrecords():
-    result = initialdb()
+    initialdb()
