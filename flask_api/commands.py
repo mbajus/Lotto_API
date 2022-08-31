@@ -16,6 +16,7 @@ def create_tables():
 @with_appcontext
 def getpage():
     html = gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
+    print(html)
     return html
 
 @click.command(name='dbrecords')

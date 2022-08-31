@@ -1,10 +1,10 @@
 import bs4 as bs
-from flask_api.extensions import db
-from flask_api.models import Lotto
-from flask_api.datascraper.htmltool import gethtml
+from ..extensions import db
+from ..models import Lotto
+from ..datascraper.htmltool import gethtml
 
 def initialdb():
-    page = gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
+    page = gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1958-08-29,10")
     page = bs.BeautifulSoup(page, "html.parser")
 
 
@@ -13,8 +13,6 @@ def initialdb():
         date = code.find("p", class_="sg__desc-title").get_text().strip()
         if ":" in date:
             record.time = date[-5:].replace(":","")
-        else:
-            record.time = "" # older records from lotto.pl page doesn't have time assignment
         record.date = "".join(date.split(",")[1].strip().split(".")[::-1])   
 
         for row in code.find_all("div", class_="result-item"):

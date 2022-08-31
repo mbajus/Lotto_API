@@ -2,7 +2,7 @@ from flask import Blueprint, request
 
 from flask_api.extensions import db
 from flask_api.models import Lotto
-from flask_api.datascraper.htmltool2 import gethtml
+
 
 main = Blueprint('main', __name__)
 
