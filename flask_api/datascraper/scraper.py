@@ -1,10 +1,10 @@
 import bs4 as bs
 from flask_api.extensions import db
 from flask_api.models import Lotto
-from .webdriver import gethtml
+import webdriver
 
 def initialdb():
-    page = gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
+    page = webdriver.gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
     page = bs.BeautifulSoup(page, "html.parser")
 
 
