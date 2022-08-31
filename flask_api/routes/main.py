@@ -24,5 +24,5 @@ def add():
 
 @main.route('/init')
 def init():
-    initialdb()
-    return "DONE"
+    
+    return initialdb()
