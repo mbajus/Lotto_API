@@ -2,7 +2,7 @@ from flask import Blueprint, request
 
 from flask_api.extensions import db
 from flask_api.models import Lotto
-from flask_api.datascraper.scraper import initialdb
+from flask_api.datascraper.htmltool import gethtml
 
 main = Blueprint('main', __name__)
 
@@ -25,4 +25,4 @@ def add():
 @main.route('/init')
 def init():
     
-    return initialdb()
+    return gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
