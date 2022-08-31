@@ -31,7 +31,7 @@ def initialdb():
             #     record.ssid = id
         db.session.add(record)
         db.session.commit()
-    return record.nums
+    
 
 
 
