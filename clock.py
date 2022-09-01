@@ -6,7 +6,7 @@ sched = BackgroundScheduler(timezone="Europe/Warsaw")
 def timed_job():
     print("XD mineło mało czasu")
 
-@sched.scheduled_job("cron", hour=14, minute=32)
+@sched.scheduled_job("cron", hour=14, minute=36)
 def scheduled_job():
     print("XD WUDZIESTA")
 
