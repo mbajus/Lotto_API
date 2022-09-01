@@ -1,13 +1,13 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 
-sched = BackgroundScheduler(timezone="Europe/Warsaw")
+sched = BlockingScheduler(timezone="Europe/Warsaw")
 
-@sched.scheduled_job("interval", minutes = 1.5)
+@sched.scheduled_job('interval', minutes=0.5)
 def timed_job():
-    print("XD mineło mało czasu")
+    print('This job is run every half minute.')
 
-@sched.scheduled_job("cron", hour=14, minute=36)
+@sched.scheduled_job('cron', hour=14, minute=52)
 def scheduled_job():
-    print("XD WUDZIESTA")
+    print('This job is run every weekday at 14:50.')
 
 sched.start()
