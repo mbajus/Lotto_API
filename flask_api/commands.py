@@ -12,9 +12,9 @@ from .datascraper.scraper import initialdb
 def create_tables():
     db.create_all()
 
-@click.command(name='getpage')
+@click.command(name='updatedb')
 @with_appcontext
-def getpage():
+def updatedb():
     html = gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1957-08-29,10")
     print(html)
     return html
@@ -23,3 +23,4 @@ def getpage():
 @with_appcontext
 def dbrecords():
     initialdb()
+
