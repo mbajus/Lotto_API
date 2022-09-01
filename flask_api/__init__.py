@@ -1,6 +1,6 @@
 from flask import Flask 
 
-from .commands import create_tables, getpage, dbrecords, updatedb
+from .commands import create_tables, dbrecords, updatedb
 from .extensions import db
 from .routes.main import main
 
