@@ -1,4 +1,5 @@
 from ..models import Lotto
+from ..extensions import db
 import time, os
 
 def check_db():
