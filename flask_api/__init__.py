@@ -15,6 +15,9 @@ def create_app(config_file='settings.py'):
     app.cli.add_command(updatedb)
     app.cli.add_command(dbrecords)
 
+    with app.app_context():
+        db.create_all()
+
     return app
 
 
