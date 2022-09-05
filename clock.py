@@ -1,4 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
+
 from flask_api.datascraper.main import check_db
 
 sched = BlockingScheduler(timezone='Europe/Warsaw')
