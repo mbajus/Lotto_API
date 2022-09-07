@@ -14,8 +14,8 @@ def update():
     while miss_ids != []:
         miss_id = miss_ids[-1]
         miss_date = str(Lotto.query.get(miss_id+1).date) # the lastest closes date to the missing one
-        scrap_to_db(f"https://www.lotto.pl/lotto/wyniki-i-wygrane/date,{miss_date[0:4]}-{miss_date[4:6]}-{miss_date[6:8]},500")
-        miss_ids = miss_ids[0:max(miss_ids.index(miss_id)-499, 0)]
+        scrap_to_db(f"https://www.lotto.pl/lotto/wyniki-i-wygrane/date,{miss_date[0:4]}-{miss_date[4:6]}-{miss_date[6:8]},250")
+        miss_ids = miss_ids[0:max(miss_ids.index(miss_id)-248, 0)]
         print("LOOP")
     
 def lastupdate(): # getting last 10 records
