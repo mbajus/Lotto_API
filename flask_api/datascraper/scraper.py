@@ -6,7 +6,9 @@ from ..datascraper.htmltool import gethtml
 def scrap_to_db(url):
     page = gethtml(url)
     page = bs.BeautifulSoup(page, "html.parser")
-
+    ids = []
+    for record in Lotto.query.with_entities(Lotto.id).all(): # getting list of lottery IDs in DB
+        ids.append(record[0])
     for code in page.find_all("div", class_="game-main-box skip-contrast"):
         record = Lotto()
         date = code.find("p", class_="sg__desc-title").get_text().strip()
@@ -27,8 +29,9 @@ def scrap_to_db(url):
                 record.numsp = nums
             # elif name = "Super Szansa":
             #     record.ssid = id
-        db.session.add(record)
-        db.session.commit()
+        if not record.id in ids:
+            db.session.add(record)
+            db.session.commit()
     
 
 
