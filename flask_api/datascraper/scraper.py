@@ -29,10 +29,11 @@ def scrap_to_db(url):
                 record.numsp = nums
             # elif name = "Super Szansa":
             #     record.ssid = id
-        if not record.id in ids:
+        if int(record.id) in ids:
+            del record
+        else:
             db.session.add(record)
-            db.session.commit()
-    
+            db.session.commit()  
 
 
 
