@@ -4,6 +4,7 @@ from ..models import Lotto
 from ..datascraper.htmltool import gethtml
 
 def scrap_to_db(url):
+    print(f"Scraping url: {url}")
     page = gethtml(url)
     page = bs.BeautifulSoup(page, "html.parser")
     ids = []
