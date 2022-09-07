@@ -1,8 +1,8 @@
 from flask import Blueprint, request
 
-from flask_api.extensions import db
-from flask_api.models import Lotto
-from datascraper.main import update
+from ..extensions import db
+from ..models import Lotto
+from ..datascraper.main import update
 
 main = Blueprint('main', __name__)
 
