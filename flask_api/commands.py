@@ -10,13 +10,13 @@ from .datascraper.main import update, lastupdate
 def create_tables():
     db.create_all()
 
-@click.command(name='completeupdate')
+@click.command(name='complete_update_db')
 @with_appcontext
-def db_complete_update():
+def complete_update_db():
     update()
 
-@click.command(name='lastupdate')
+@click.command(name='last_update_db')
 @with_appcontext
-def db_last_update():
+def last_update_db():
     lastupdate()
 
