@@ -1,6 +1,6 @@
 from flask import Flask 
 
-from .commands import create_tables, dbrecords, updatedb
+from .commands import create_tables, completeupdate, lastupdate
 from .extensions import db
 from .routes.main import main
 
@@ -12,8 +12,8 @@ def create_app(config_file='settings.py'):
     app.register_blueprint(main)
 
     app.cli.add_command(create_tables)
-    app.cli.add_command(updatedb)
-    app.cli.add_command(dbrecords)
+    app.cli.add_command(completeupdate)
+    app.cli.add_command(lastupdate)
 
     return app
 

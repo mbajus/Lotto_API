@@ -3,10 +3,9 @@ from ..extensions import db
 from ..models import Lotto
 from ..datascraper.htmltool import gethtml
 
-def initialdb():
-    page = gethtml("https://www.lotto.pl/lotto/wyniki-i-wygrane/date,1958-08-29,10")
+def scrap_to_db(url):
+    page = gethtml(url)
     page = bs.BeautifulSoup(page, "html.parser")
-
 
     for code in page.find_all("div", class_="game-main-box skip-contrast"):
         record = Lotto()
@@ -14,7 +13,6 @@ def initialdb():
         if ":" in date:
             record.time = date[-5:].replace(":","")
         record.date = "".join(date.split(",")[1].strip().split(".")[::-1])   
-
         for row in code.find_all("div", class_="result-item"):
             name = row.find("p", class_="result-item__name").get_text().strip()
             id = row.find("p", class_="result-item__number").get_text().strip()

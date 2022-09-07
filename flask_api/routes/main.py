@@ -31,7 +31,7 @@ def init():
 @main.route('/update')
 def req_update():    
     update()
-    return 'Update done.'
+    return 'Update done. '
 
 @main.route('/lastupdate')
 def req_lastupdate():  
