@@ -35,7 +35,3 @@ def scrap_to_db(url):
         else:
             db.session.add(record)
             db.session.commit()  
-
-
-
-

@@ -1,42 +1,26 @@
-from flask import Blueprint, request
+from flask import Blueprint, json
 
 from ..extensions import db
 from ..models import Lotto
-from ..datascraper.main import update
+from ..datascraper.main import update, lastupdate
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    dball = Lotto.query.all()
-    print(dball)
-    return dball
+    return "It's a polish Lottery API, more information coming shortly."
 
-@main.route('/add', methods=['POST'])
-def add():
-    content_type = request.headers.get('Content-Type')
-    print("TYP POST", content_type)
-    if (content_type == 'application/json'):
-        json = request.json
-        return json
-    else:
-        return 'Content-Type not supported!'
-
-@main.route('/init')
-def init():
-    
-    return "XD"
 
 # Updates.
 @main.route('/update')
 def req_update():    
-    update()
-    return 'Update done. '
+    res = update()
+    return res
 
 @main.route('/lastupdate')
 def req_lastupdate():  
-
-    return 'Update done.'
+    lastupdate()
+    return 'Last records updated.'
 
 @main.route('/api/test')
 def test():
