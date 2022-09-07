@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, ma
 
 from flask_api.extensions import db
 from flask_api.models import Lotto
@@ -26,3 +26,18 @@ def add():
 def init():
     
     return "XD"
+
+# Updates.
+@main.route('/update')
+def update():    
+
+    return 'Update done.'
+
+@main.route('/lastupdate')
+def lastupdate():  
+
+    return 'Update done.'
+
+@main.route('/api/test')
+def test():
+    return "It works!"
