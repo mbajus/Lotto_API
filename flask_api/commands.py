@@ -2,9 +2,8 @@ import click
 from flask.cli import with_appcontext
 
 from .extensions import db
-from .models import Lotto
 from .datascraper.htmltool import gethtml
-from .datascraper.scraper import initialdb
+from .datascraper.main import update
 
 
 @click.command(name='create_tables')
@@ -22,5 +21,5 @@ def updatedb():
 @click.command(name='dbrecords')
 @with_appcontext
 def dbrecords():
-    initialdb()
+    update()
 
