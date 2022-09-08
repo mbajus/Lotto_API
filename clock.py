@@ -8,13 +8,8 @@ sched = BlockingScheduler(timezone='Europe/Warsaw')
 @sched.scheduled_job('interval', minutes=120, id='interval_check')
 def timed_job():
     print('Sending request for update - every 2h.')
-    count = 0
-    last = update()
-    while last != 0 or count != last:
-        count = last
-        print(f"Still missing {last} records of Lottery.")
-        last = update()
-    print("None records missing, the datebase is up to date.")
+    n = update()
+    print(f"COMPLETE. {n} records to update.")
 
 
 # gets the newest scores
