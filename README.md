@@ -11,7 +11,7 @@
 Made to improve some skills and for future idea, for a app which will allow to check the lottery ticket with a pic.
 It's a self updating database, which will provade all kind of data about polish Lottery system in main branches (Lotto, Mini Lotto, Eurojackpot, Multimulti, Ekstapensja, Kaskada and Superszansa).
 The data are collected from the main page of polish LOTTO (lotto.pl), by webscraping using selenium (JS).
-This service is setup on Heroku.
+This service is setup on [Heroku](https://api-lotto.herokuapp.com/) https://api-lotto.herokuapp.com/.
 The project is in progress.
 
 ## Technologies
