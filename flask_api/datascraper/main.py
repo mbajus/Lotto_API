@@ -15,10 +15,7 @@ def update():
         ids.append(record[0])
     ids.sort()
     miss_ids = [x for x in range(ids[0], ids[-1]+1) if x not in ids]
-    if miss_ids == []:
-        return "Database is up to date!"
-    else:
-        return f"Still {ids} records missing in database."
+    return len(miss_ids)
  
 def lastupdate(): # getting last 10 records
     url = "https://www.lotto.pl/lotto/wyniki-i-wygrane"
