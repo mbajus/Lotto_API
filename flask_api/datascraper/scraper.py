@@ -8,7 +8,7 @@ def scrap_to_db(url):
     page = gethtml(url)
     page = bs.BeautifulSoup(page, "html.parser")
     ids = []
-    for record in Lotto.query.with_entities(Lotto.id).all(): # getting list of lottery IDs in DB
+    for record in db.execute(select(Lotto.id)).all(): # getting list of lottery IDs in DB
         ids.append(record[0])
     for code in page.find_all("div", class_="game-main-box skip-contrast"):
         record = Lotto()
@@ -33,5 +33,5 @@ def scrap_to_db(url):
         if int(record.id) in ids:
             del record
         else:
-            db.session.add(record)
-            db.session.commit()  
+            db.add(record)
+            db.commit()  

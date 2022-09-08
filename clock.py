@@ -5,7 +5,7 @@ sched = BlockingScheduler(timezone='Europe/Warsaw')
 
 # The clock sends to API a request, which start an update.
 # checks if up to date
-@sched.scheduled_job('interval', hours=2, id='interval_check')
+@sched.scheduled_job('interval', minutes=15, id='interval_check')
 def timed_job():
     print('Sending request for update - every 2h.')
     req = requests.get('https://api-lotto.herokuapp.com/update')

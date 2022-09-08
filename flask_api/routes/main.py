@@ -1,6 +1,6 @@
 from flask import Blueprint, json
 
-from ..extensions import db
+from ..extensions import flask_db
 from ..models import Lotto
 from ..datascraper.main import update, lastupdate
 
@@ -10,6 +10,9 @@ main = Blueprint('main', __name__)
 def index():
     return "It's a polish Lottery API, more information coming shortly."
 
+@main.route('/<int:num>')
+def lotto_num(num):
+    return (flask_db.session.query(Lotto).get(num)).nums
 
 # Updates.
 @main.route('/update')
