@@ -9,7 +9,7 @@ def update():
         ids.append(record[0])
     ids.sort()
     miss_ids = [x for x in range(ids[0], ids[-1]+1) if x not in ids]
-    miss_date = str(Lotto.query.get(miss_ids[-1]+1).date)
+    miss_date = str(db.query(Lotto).get(miss_ids[-1]+1).date)
     scrap_to_db(f"https://www.lotto.pl/lotto/wyniki-i-wygrane/date,{miss_date[0:4]}-{miss_date[4:6]}-{miss_date[6:8]},300")
     for record in db.execute('SELECT id FROM lotto'):
         ids.append(record[0])

@@ -5,7 +5,7 @@ sched = BlockingScheduler(timezone='Europe/Warsaw')
 
 # The clock sends to API a request, which start an update.
 # checks if up to date
-@sched.scheduled_job('interval', minutes=10, id='interval_check')
+@sched.scheduled_job('interval', minutes=5, id='interval_check')
 def timed_job():
     print('Sending request for update - every 2h.')
     update()
