@@ -10,20 +10,21 @@ main = Blueprint('main', __name__)
 def index():
     return "It's a polish Lottery API, more information coming shortly."
 
-@main.route('/<int:num>')
+@main.route('/api/lotto/id/<int:num>')
 def lotto_num(num):
     return (flask_db.session.query(Lotto).get(num)).nums
 
-# Updates.
-@main.route('/update')
-def req_update():    
-    res = update()
-    return res
-
-@main.route('/lastupdate')
-def req_lastupdate():  
-    lastupdate()
-    return 'Last records updated.'
+@main.route('/api/lotto/date/<int:date>')
+def lotto_date(date):
+    if len(str(date)) == 8:
+        possible_dates = flask_db.session.query(Lotto).with_entities(Lotto.date).all()
+        for p_date in possible_dates:
+            if p_date[0] == date:
+                return flask_db.session.query(Lotto).filter_by(date=date).first().nums
+        else:
+            return f"There wasn't any lottery draw on {date}"
+    else:
+        return "Incorect data format, use YYYYMMDD."
 
 @main.route('/api/test')
 def test():
