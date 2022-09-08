@@ -17,4 +17,6 @@ class Lotto(Base):
     def __init__(self, id, nums, numsp, date, time):
         id.self = id
         nums.self = nums
+        numsp.self = numsp
         date.self = date
+        time.self = time
