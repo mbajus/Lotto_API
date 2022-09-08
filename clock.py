@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from .flask_api.datascraper.main import update, lastupdate
+from flask_api.datascraper.main import update, lastupdate
 
 sched = BlockingScheduler(timezone='Europe/Warsaw')
 
