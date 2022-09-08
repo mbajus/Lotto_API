@@ -13,10 +13,3 @@ class Lotto(Base):
     date = Column(Integer)
     time = Column(Integer)
     # ssid = Column(Integer) # SuperSzansa id, for future assignment
-
-    def __init__(self, id, nums, numsp, date, time):
-        id.self = id
-        nums.self = nums
-        numsp.self = numsp
-        date.self = date
-        time.self = time
