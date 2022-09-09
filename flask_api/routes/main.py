@@ -2,7 +2,7 @@ from flask import Blueprint, json
 
 from ..extensions import flask_db
 from ..models import Lotto
-from ..datascraper.main import update, lastupdate
+from ..updater.main import update, lastupdate
 
 main = Blueprint('main', __name__)
 

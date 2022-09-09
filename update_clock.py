@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from flask_api.datascraper.main import update, lastupdate
+from flask_api.updater.main import update, lastupdate
 
 sched = BlockingScheduler(timezone='Europe/Warsaw')
 
@@ -18,6 +18,6 @@ def scheduled_job():
     print('Sending request for newest scores at 22:10')
     lastupdate()
 
-update()
+print(update())
 
 sched.start() 

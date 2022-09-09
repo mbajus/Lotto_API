@@ -1,2 +1,2 @@
 web:    gunicorn    wsgi:app
-clock:  python      clock.py
+clock:  python      update_clock.py

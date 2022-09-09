@@ -1,7 +1,7 @@
 import bs4 as bs
 from ..extensions import db
 from ..models import Lotto
-from ..datascraper.htmltool import gethtml
+from .htmltool import gethtml
 
 def scrap_to_db(url):
     print(f"Scraping url: {url}")
