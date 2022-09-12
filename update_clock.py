@@ -18,6 +18,7 @@ def scheduled_job():
     print('Sending request for newest scores at 22:10')
     lastupdate()
 
-print(update())
+print("Starting initial update.")
+print("Missing records: ",update())
 
 sched.start() 
