@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, make_response, json
 
 from ..extensions import flask_db
 from ..models import Lotto
-from ..updater.main import update, lastupdate
 
 main = Blueprint('main', __name__)
 

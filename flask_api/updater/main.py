@@ -1,5 +1,5 @@
 from ..extensions import db
-from ..models import Lotto
+from ..models import Lotto, Minilotto, Multimulti, Ekstrapensja, Euro, Kaskada, Superszansa
 from .scraper import scrap_to_db
 
 def update():
@@ -25,6 +25,6 @@ def update():
         last = len(miss_ids)
     return len(miss_ids)
  
-def lastupdate(): # getting last 10 records
+def lastupdate(): # getting last records for all games
     url = "https://www.lotto.pl/lotto/wyniki-i-wygrane"
     scrap_to_db(url)
