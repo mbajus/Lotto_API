@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData, Column, Integer, String
+from sqlalchemy import MetaData, Column, Integer, String, ForeignKey 
 from sqlalchemy.ext.declarative import declarative_base
 
 metadata = MetaData()
