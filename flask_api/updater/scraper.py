@@ -24,10 +24,10 @@ def scrap_to_db(url):
                 nums.append(i.get_text().strip())
             nums = ",".join(nums)
             if name == "Lotto":
-                record.nums = nums
+                record.nums1 = nums
                 record.id = id
             elif name == "Lotto Plus":
-                record.numsp = nums
+                record.nums2 = nums
             # elif name = "Super Szansa":
             #     record.ssid = id
         if int(record.id) in ids:

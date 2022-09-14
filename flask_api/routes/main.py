@@ -27,10 +27,6 @@ def lotto_date(date):
     else:
         return custom_error("Invalid data type. Use YYYYMMDD.", 400)
 
-@main.route('/api/test')
-def test():
-    return "It ON!"
-
 def custom_error(message, status_code):
     res = {"code": status_code, "message": message}
     return make_response(jsonify(res), status_code)
