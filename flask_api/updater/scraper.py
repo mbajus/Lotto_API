@@ -30,6 +30,7 @@ def scrap_to_db(url):
                 record.nums2 = nums
             # elif name = "Super Szansa":
             #     record.ssid = id
+        print(record)
         if int(record.id) in ids:
             del record
         else:

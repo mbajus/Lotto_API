@@ -8,4 +8,4 @@ from .settings import SQLALCHEMY_DATABASE_URI
 
 flask_db = FlaskSQL(metadata=metadata) # connection for flask
 
-db = Session(create_engine(SQLALCHEMY_DATABASE_URI))
+db = Session(create_engine(SQLALCHEMY_DATABASE_URI)) # connection for update
