@@ -1,5 +1,4 @@
-from sqlalchemy import MetaData, Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import MetaData, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 metadata = MetaData() 
@@ -13,8 +12,7 @@ class Lotto(Base):
     nums2 = Column(String(17))
     date = Column(Integer, nullable=False)
     time = Column(Integer)
-    ss_id = Column(Integer, ForeignKey('superszansa.id'))
-    superszansa = relationship("Superszansa")
+    ss_id = Column(Integer)
     
     def obj_to_dict(self):
         if isinstance(self.nums1, str):
@@ -37,8 +35,7 @@ class Minilotto(Base):
     nums1 = Column(String(14), nullable=False)
     date = Column(Integer, nullable=False)
     time = Column(Integer)
-    ss_id = Column(Integer, ForeignKey('superszansa.id'))
-    superszansa = relationship("Superszansa")
+    ss_id = Column(Integer)
     
     def obj_to_dict(self):
         return {
@@ -57,8 +54,7 @@ class Multimulti(Base):
     nums2 = Column(String(2))
     date = Column(Integer)
     time = Column(Integer)
-    ss_id = Column(Integer, ForeignKey('superszansa.id'))
-    superszansa = relationship("Superszansa")
+    ss_id = Column(Integer)
     
     def obj_to_dict(self):
         return {
@@ -77,8 +73,7 @@ class Euro(Base):
     nums1 = Column(String(59))
     date = Column(Integer)
     time = Column(Integer)
-    ss_id = Column(Integer, ForeignKey('superszansa.id'))
-    superszansa = relationship("Superszansa")
+    ss_id = Column(Integer)
     
     def obj_to_dict(self):
         return {
@@ -97,8 +92,7 @@ class Ekstrapensja(Base):
     nums2 = Column(String(17))
     date = Column(Integer, nullable=False)
     time = Column(Integer)
-    ss_id = Column(Integer, ForeignKey('superszansa.id'))
-    superszansa = relationship("Superszansa")
+    ss_id = Column(Integer)
     
     def obj_to_dict(self):
         return {
@@ -117,8 +111,7 @@ class Kaskada(Base):
     nums1 = Column(String(35), nullable=False)
     date = Column(Integer, nullable=False)
     time = Column(Integer)
-    ss_id = Column(Integer, ForeignKey('superszansa.id'))
-    superszansa = relationship("Superszansa")
+    ss_id = Column(Integer)
     
     def obj_to_dict(self):
         return {
