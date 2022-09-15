@@ -2,7 +2,7 @@ from sqlalchemy import MetaData, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
-metadata = MetaData()
+metadata = MetaData() 
 Base = declarative_base(metadata=metadata)
 
 class Lotto(Base):
