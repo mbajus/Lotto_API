@@ -28,7 +28,7 @@ def scrap_to_db(url):
                 record.id = id
             elif name == "Lotto Plus":
                 record.nums2 = nums
-            elif name = "Super Szansa":
+            elif name == "Super Szansa":
                 record.ss_id = id
         if int(record.id) in ids:
             del record
