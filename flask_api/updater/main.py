@@ -2,29 +2,40 @@ from ..extensions import db
 from ..models import Lotto, Minilotto, Multimulti, Ekstrapensja, Euro, Kaskada, Superszansa
 from .scraper import scrap_to_db
 
-def update():
-    lastupdate()  
-    count = None
-    last = 0
-    while last != count:
-        count = last
-        ids = [0]
-        for record in db.execute('SELECT id FROM lotto'):
-            ids.append(record[0])
-        ids.sort()
-        miss_ids = [x for x in range(ids[0], ids[-1]+1) if x not in ids]
-        if miss_ids == []:
-            break
-        print(miss_ids)
-        miss_date = str(db.query(Lotto).get(miss_ids[-1]+1).date)
-        scrap_to_db(f"https://www.lotto.pl/lotto/wyniki-i-wygrane/date,{miss_date[0:4]}-{miss_date[4:6]}-{miss_date[6:8]},300")
-        for record in db.execute('SELECT id FROM lotto'):
-            ids.append(record[0])
-        ids.sort()
-        miss_ids = [x for x in range(ids[0], ids[-1]+1) if x not in ids]
-        last = len(miss_ids)
-    return len(miss_ids)
+##############################################################################################
+# url for updates
+# lotto https://www.lotto.pl/lotto/wyniki-i-wygrane/date,2022-09-17,300
+# multi-multi https://www.lotto.pl/multi-multi/wyniki-i-wygrane/date,2022-09-18,300
+# super-szansa https://www.lotto.pl/super-szansa/wyniki-i-wygrane/date,2022-09-18,300
+# ekstra-pensja https://www.lotto.pl/ekstra-pensja/wyniki-i-wygrane/date,2022-09-18,300
+# eurojackpot https://www.lotto.pl/eurojackpot/wyniki-i-wygrane/date,2022-09-16,300
+# mini-lotto https://www.lotto.pl/mini-lotto/wyniki-i-wygrane/date,2022-09-18,300
+# kaskada https://www.lotto.pl/kaskada/wyniki-i-wygrane/date,2022-09-18,300
+##############################################################################################
+
+def check_missing_ids(game):
+    db_ids = [0]
+    for id in db.execute('SELECT id FROM %s' % game.replace('-','')):
+        db_ids.append(id[0])
+    missing_ids = [x for x in range(db_ids[0], db_ids[-1]+1) if x not in db_ids]
+    return missing_ids
+
+def update_queue():
+    update_last()   # this func should provide last records from lottery    
+    games = ['lotto', 'multi-multi', 'super-szansa', 'ekstra-pensja', 'eurojackpot', 'min1i-lotto', 'kaskada']
+    for game in games:
+        missing_ids = check_missing_ids(game)
+        if missing_ids == []: # if there are no missing records, go to next game
+            continue
+        last_loop = None
+        while last_loop != missing_ids or len(missing_ids) != 0:
+            last_loop = missing_ids
+            last_date = str(db.execute('SELECT date FROM %s WHERE id = %d' % (game.replace('-',''), missing_ids[-1]+1)))
+            scrap_to_db(f"https://www.lotto.pl/lotto/wyniki-i-wygrane/date,{last_date[0:4]}-{last_date[4:6]}-{last_date[6:8]},300")
+            missing_ids = check_missing_ids(game)
+        print(f'UPDATER - update_queue - {game} has {len(missing_ids)} missing records.')
+    print('UPDATER - update_queue - ended.')
  
-def lastupdate(): # getting last records for all games
+def update_last(): # getting last records for all games
     url = "https://www.lotto.pl/lotto/wyniki-i-wygrane"
     scrap_to_db(url)

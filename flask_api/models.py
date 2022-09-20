@@ -66,14 +66,13 @@ class Multimulti(Base):
             "time": self.time
             }
 
-class Euro(Base):
-    __tablename__ = 'euro'
+class Eurojackpot(Base):
+    __tablename__ = 'eurojackpot'
 
     id = Column(Integer, primary_key=True)
     nums1 = Column(String(59))
     date = Column(Integer)
     time = Column(Integer)
-    ss_id = Column(Integer)
     
     def obj_to_dict(self):
         return {
