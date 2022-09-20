@@ -1,5 +1,4 @@
 from ..extensions import db
-from ..models import Lotto, Minilotto, Multimulti, Ekstrapensja, Euro, Kaskada, Superszansa
 from .scraper import scrap_to_db
 
 ##############################################################################################
