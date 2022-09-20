@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from flask_api.updater.main import update, lastupdate
+from flask_api.updater.main import update_last, update_queue
 
 sched = BlockingScheduler(timezone='Europe/Warsaw')
 
@@ -8,17 +8,16 @@ sched = BlockingScheduler(timezone='Europe/Warsaw')
 @sched.scheduled_job('interval', minutes=60, id='interval_check')
 def timed_job():
     print('Sending request for update - every 1h.')
-    n = update()
-    print(f"COMPLETE. {n} records to update.")
+    update_queue()
 
 
 # gets the newest scores
-@sched.scheduled_job('cron', day_of_week='1,3,5', hour=22, minute=10, id='lottery_check')
+@sched.scheduled_job('cron', hour=22, minute=10, id='lottery_check')
 def scheduled_job():
     print('Sending request for newest scores at 22:10')
-    lastupdate()
+    update_last()
 
 print("Starting initial update.")
-print("Missing records: ",update())
+update_queue()
 
 sched.start() 
