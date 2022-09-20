@@ -8,13 +8,13 @@ def scrap_to_db(url):
     page = gethtml(url)
     page = bs.BeautifulSoup(page, "html.parser")
     for code in page.find_all("div", class_="game-main-box skip-contrast"):
-        del date, time, nums1, nums2, name, id, nums_ss
         ss_id = None
         date = code.find("p", class_="sg__desc-title").get_text().strip()
         time = date[-5:].replace(":","") if ":" in date else None
         date = "".join(date.split(",")[1].strip().split(".")[::-1])   
         nums1 = []
         nums2 = []
+        nums_ss = []
         for row in code.find_all("div", class_="result-item"):
             name = row.find("p", class_="result-item__name").get_text().strip()           
             if name in ["Lotto", "Eurojackpot", "Multi Multi", "Ekstra Pensja", "Mini Lotto", "Kaskada"]:
@@ -57,3 +57,4 @@ def scrap_to_db(url):
                 db.execute(sql_query)
             else:
                 print(f'The game {game} not in DB.')
+        del date, time, name, id
