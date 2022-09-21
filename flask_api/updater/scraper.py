@@ -5,7 +5,7 @@ from ..extensions import db
 from ..models import Lotto, Eurojackpot, Multimulti, Ekstrapensja, Superszansa, Kaskada, Minilotto
 from .htmltool import gethtml
 
-def insert_db(record): # 
+def insert_db(record): 
     if db.execute('SELECT id FROM %s WHERE id = %s' %(record.__tablename__, record.id)).fetchall() == []:   
         with Session(db) as session:
             session.add(record)
@@ -32,7 +32,9 @@ def scrap_to_db(url):
             if name in ["Lotto", "Eurojackpot", "Multi Multi", "Ekstra Pensja", "Mini Lotto", "Kaskada"]:
                 # print('record = %s()' % name.replace(' ', '').lower().capitalize()) # doesnt work on heroku ??!
                 # exec('record = %s()' % name.replace(' ', '').lower().capitalize())
+                print(name)
                 record = db_models[name]
+                print(record.__class__)
                 record.date = date
                 record.time = time
                 record.id = row.find("p", class_="result-item__number").get_text().strip()
