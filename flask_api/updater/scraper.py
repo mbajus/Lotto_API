@@ -22,6 +22,7 @@ def scrap_to_db(url):
         for row in code.find_all("div", class_="result-item"):
             name = row.find("p", class_="result-item__name").get_text().strip()          
             if name in ["Lotto", "Eurojackpot", "Multi Multi", "Ekstra Pensja", "Mini Lotto", "Kaskada"]:
+                print('record = %s()' % name.replace(' ', '').lower().capitalize())
                 exec('record = %s()' % name.replace(' ', '').lower().capitalize())
                 record.date = date
                 record.time = time
