@@ -1,4 +1,6 @@
 import bs4 as bs
+from sqlalchemy import text
+
 from ..extensions import db
 from ..models import Lotto, Superszansa
 from .htmltool import gethtml
@@ -38,7 +40,7 @@ def scrap_to_db(url):
                     f"INSERT INTO superszansza (id, nums1, date, time) VALUES ({ss_id}, '{nums_ss}', {date}, {time})"
                     f"END"
                 )
-                db.execute(sql_query)
+                db.execute(text(sql_query))
             if game in ['lotto', 'multimulti', 'ekstrapensja']:         
                 sql_query = (
                     f"IF NOT EXISTS(SELECT id FROM {game} WHERE id = {id}"
@@ -46,7 +48,7 @@ def scrap_to_db(url):
                     f"INSERT INTO {game} (id, nums1, nums2, date, time, ss_id) VALUES ({id}, '{nums1}', '{nums2}', {date}, {time}, {ss_id})"
                     f"END"
                 )
-                db.execute(sql_query)
+                db.execute(text(sql_query))
             elif game in ['eurojackpot', 'minilotto', 'kaskada']:         
                 sql_query = (
                     f"IF NOT EXISTS(SELECT id FROM {game} WHERE id = {id}"
@@ -54,7 +56,7 @@ def scrap_to_db(url):
                     f"INSERT INTO {game} (id, nums1, date, time, ss_id) VALUES ({id}, '{nums1}', {date}, {time}, {ss_id})"
                     f"END"
                 )
-                db.execute(sql_query)
+                db.execute(text(sql_query))
             else:
                 print(f'The game {game} not in DB.')
         del date, time, name, id
