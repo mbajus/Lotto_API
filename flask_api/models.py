@@ -50,9 +50,9 @@ class Multimulti(Base):
     __tablename__ = 'multimulti'
 
     id = Column(Integer, primary_key=True)
-    nums1 = Column(String(59))
+    nums1 = Column(String(59), nullable=False)
     nums2 = Column(String(2))
-    date = Column(Integer)
+    date = Column(Integer, nullable=False)
     time = Column(Integer)
     ss_id = Column(Integer)
     
@@ -70,8 +70,8 @@ class Eurojackpot(Base):
     __tablename__ = 'eurojackpot'
 
     id = Column(Integer, primary_key=True)
-    nums1 = Column(String(59))
-    date = Column(Integer)
+    nums1 = Column(String(59), nullable=False)
+    date = Column(Integer, nullable=False)
     time = Column(Integer)
     
     def obj_to_dict(self):
