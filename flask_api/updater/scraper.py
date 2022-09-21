@@ -1,4 +1,3 @@
-from ast import Mult
 import bs4 as bs
 from sqlalchemy.orm import Session
 

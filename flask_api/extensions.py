@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy as FlaskSQL
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
 
 from .models import metadata
 from .settings import SQLALCHEMY_DATABASE_URI

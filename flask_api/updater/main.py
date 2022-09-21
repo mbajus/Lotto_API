@@ -21,7 +21,7 @@ def check_missing_ids(game):
 
 def update_queue():
     update_last()   # this func should provide last records from lottery    
-    games = ['lotto', 'multi-multi', 'super-szansa', 'ekstra-pensja', 'eurojackpot', 'min1i-lotto', 'kaskada']
+    games = ['lotto', 'multi-multi', 'super-szansa', 'ekstra-pensja', 'eurojackpot', 'mini-lotto', 'kaskada']
     for game in games:
         missing_ids = check_missing_ids(game)
         if missing_ids == []: # if there are no missing records, go to next game
@@ -30,11 +30,11 @@ def update_queue():
         while last_loop != missing_ids or len(missing_ids) != 0:
             last_loop = missing_ids
             last_date = str(db.execute('SELECT date FROM %s WHERE id = %d' % (game.replace('-',''), missing_ids[-1]+1)).fetchone()[0])
-            scrap_to_db(f"https://www.lotto.pl/lotto/wyniki-i-wygrane/date,{last_date[0:4]}-{last_date[4:6]}-{last_date[6:8]},300")
+            scrap_to_db(f"https://www.lotto.pl/{game}/wyniki-i-wygrane/date,{last_date[0:4]}-{last_date[4:6]}-{last_date[6:8]},300")
             missing_ids = check_missing_ids(game)
         print(f'UPDATER - update_queue - {game} has {len(missing_ids)} missing records.')
     print('UPDATER - update_queue - ended.')
  
 def update_last(): # getting last records for all games
-    url = "https://www.lotto.pl/lotto/wyniki-i-wygrane"
+    url = "https://www.lotto.pl/wyniki"
     scrap_to_db(url)
