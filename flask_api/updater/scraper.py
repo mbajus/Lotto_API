@@ -57,5 +57,6 @@ def scrap_to_db(url):
                 insert_db(Superszansa(id=ss_id, nums1=nums_ss, date=date, time=time))
             else:
                 print(f'{name} game didnt match the db tables.')
-        insert_db(record)
+        if not record == None:
+            insert_db(record)
         record = None
