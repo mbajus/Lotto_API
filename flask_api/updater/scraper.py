@@ -1,3 +1,4 @@
+from ast import Mult
 import bs4 as bs
 from sqlalchemy.orm import Session
 
@@ -16,14 +17,23 @@ def scrap_to_db(url):
     page = gethtml(url)
     page = bs.BeautifulSoup(page, "html.parser")
     for code in page.find_all("div", class_="game-main-box skip-contrast"):
+        db_models = {
+            "Lotto": Lotto(),
+            "Eurojackpot": Eurojackpot(),
+            "Multi Multi": Multimulti(),
+            "Ekstra Pensja": Ekstrapensja(), 
+            "Mini Lotto": Minilotto(),
+            "Kaskada": Kaskada(),
+        } # while exec() doesnt work on heroku
         date = code.find("p", class_="sg__desc-title").get_text().strip()
         time = date[-5:].replace(":","") if ":" in date else None
         date = "".join(date.split(",")[1].strip().split(".")[::-1])   
         for row in code.find_all("div", class_="result-item"):
             name = row.find("p", class_="result-item__name").get_text().strip()          
             if name in ["Lotto", "Eurojackpot", "Multi Multi", "Ekstra Pensja", "Mini Lotto", "Kaskada"]:
-                print('record = %s()' % name.replace(' ', '').lower().capitalize())
-                exec('record = %s()' % name.replace(' ', '').lower().capitalize())
+                # print('record = %s()' % name.replace(' ', '').lower().capitalize()) # doesnt work on heroku ??!
+                # exec('record = %s()' % name.replace(' ', '').lower().capitalize())
+                record = db_models[name]
                 record.date = date
                 record.time = time
                 record.id = row.find("p", class_="result-item__number").get_text().strip()
