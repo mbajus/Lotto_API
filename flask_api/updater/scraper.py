@@ -49,6 +49,7 @@ def scrap_to_db(url):
             elif name == "Super Szansa":
                 ss_id = row.find("p", class_="result-item__number").get_text().strip()
                 record.ss_id = ss_id
+                nums_ss = []
                 for i in row.find_all("div", class_="scoreline-item"):
                     nums_ss.append(i.get_text().strip())
                 nums_ss = ",".join(nums_ss)
