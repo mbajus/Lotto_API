@@ -7,7 +7,7 @@ from ..models import Lotto, Eurojackpot, Multimulti, Ekstrapensja, Superszansa, 
 from .htmltool import gethtml
 
 def insert_db(record): # 
-    if db.execute('SELECT id FROM %s WHERE id = %d' %(record.__tablename__, record.id)).fetchall() == []:   
+    if db.execute('SELECT id FROM %s WHERE id = %s' %(record.__tablename__, record.id)).fetchall() == []:   
         with Session(db) as session:
             session.add(record)
             session.commit()
