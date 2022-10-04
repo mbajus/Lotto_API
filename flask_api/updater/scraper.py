@@ -42,7 +42,7 @@ def scrap_to_db(url):
                 record.nums1 = ",".join(nums1)
                 if name == "Multi Multi":
                     nums2 = row.find("div", class_="scoreline-item circle special-multi")
-                    record.nums2 = nums2
+                    record.nums2 = nums2.get_text().strip()
             elif name in ["Lotto Plus", "Ekstra Premia"]:
                 nums2 = []
                 for i in row.find_all("div", class_="scoreline-item"):
