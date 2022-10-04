@@ -61,4 +61,4 @@ def scrap_to_db(url):
                 print(f'{name} game didnt match the db tables.')
         if 'record' in locals() and not record == None:
             insert_db(record)
-        del record
+            del record
