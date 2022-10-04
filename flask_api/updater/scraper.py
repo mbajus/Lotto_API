@@ -32,9 +32,7 @@ def scrap_to_db(url):
             if name in ["Lotto", "Eurojackpot", "Multi Multi", "Ekstra Pensja", "Mini Lotto", "Kaskada"]:
                 # print('record = %s()' % name.replace(' ', '').lower().capitalize()) # doesnt work on heroku ??!
                 # exec('record = %s()' % name.replace(' ', '').lower().capitalize())
-                print(name)
                 record = db_models[name]
-                print(record.__class__)
                 record.date = date
                 record.time = time
                 record.id = row.find("p", class_="result-item__number").get_text().strip()
@@ -42,14 +40,18 @@ def scrap_to_db(url):
                 for i in row.find_all("div", class_="scoreline-item"):
                     nums1.append(i.get_text().strip())
                 record.nums1 = ",".join(nums1)
-            elif name in ["Lotto Plus", "Plus", "Ekstra Premia"]:
+                if name == "Multi Multi":
+                    nums2 = row.find("div", class_="scoreline-item circle special-multi")
+                    record.nums2 = nums2
+            elif name in ["Lotto Plus", "Ekstra Premia"]:
                 nums2 = []
                 for i in row.find_all("div", class_="scoreline-item"):
                     nums2.append(i.get_text().strip())
                 record.nums2 = ",".join(nums2)
             elif name == "Super Szansa":
                 ss_id = row.find("p", class_="result-item__number").get_text().strip()
-                record.ss_id = ss_id
+                if record in locals():
+                    record.ss_id = ss_id
                 nums_ss = []
                 for i in row.find_all("div", class_="scoreline-item"):
                     nums_ss.append(i.get_text().strip())
