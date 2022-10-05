@@ -27,7 +27,7 @@ def update_queue():
         if missing_ids == []: # if there are no missing records, go to next game
             continue
         last_loop = None
-        while last_loop != missing_ids or len(missing_ids) != 0:
+        while last_loop != missing_ids and len(missing_ids) != 0:
             last_loop = missing_ids
             last_date = str(db.execute('SELECT date FROM %s WHERE id = %d' % (game.replace('-',''), missing_ids[-1]+1)).fetchone()[0])
             scrap_to_db(f"https://www.lotto.pl/{game}/wyniki-i-wygrane/date,{last_date[0:4]}-{last_date[4:6]}-{last_date[6:8]},300")
